@@ -1,16 +1,23 @@
 import './App.css';
-import Sidebar from "./Components/Sidebar";
 import { Route, Routes } from 'react-router-dom';
 import { CalendarPage } from "./Pages/CalendarPage";
 import { EmotionsPage } from "./Pages/EmotionsPage";
 import { HomePage } from "./Pages/HomePage";
 import { MediaPage } from "./Pages/MediaPage";
 import Container from 'react-bootstrap/Container';
-//import 'bootstrap/dist/css/bootstrap.min.css';
 import { Row, Col } from 'react-bootstrap';
+import { Journal } from 'react-bootstrap-icons';
+import Sidebar from "./Components/Sidebar";
+
+const mockJournals = [
+  
+
+]
 
 
 function App() {
+
+
   return (
   <div>
     <Sidebar/>

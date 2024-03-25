@@ -3,18 +3,49 @@ import "../App.css"
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import Button from "react-bootstrap/Button";
+import { Container } from 'react-bootstrap';
+import { FormModal } from "../Components/FormModal";
+import {JournalCards} from "../Components/JournalCards";
+import { useState } from "react";
+import useJournalStore from '../journalStore';
 
 
 export const HomePage = () => {
-  return (
-    <div><h1>HomePage</h1></div>
+  const [showModal, setShowModal] = useState(false);
+  const journals = useJournalStore((state) => state.journals);
+  const setJournals = useJournalStore((state) => state.addJournal);
+  const modifyJournals = useJournalStore((state) => state.updateJournal);
+  const [isUpdatePressed, setIsUpdatePressed] = useState(false)
+  
+  const addJournal = (journal) => {
+    console.log(journal);
+    setJournals(journal);
+    setShowModal(false);
+  }
 
-    // <Row xs={1} md={1} className="g-4">
-    //   {Array.from({ length: 4 }).map((_, idx) => (
-    //     <Col key={idx}>
-    //       <JournalCards/>
-    //     </Col>
-    //   ))}
-    // </Row>
+  const updateJournal = (journalId, newJournal) => {
+    modifyJournals(journalId, newJournal);
+    setShowModal(false);
+  }
+
+  return (
+    <Container>
+      <Row xs={1} md={1} className="g-4">
+        {journals.map((journal, idx) => (
+          <Col key={idx}>
+            <JournalCards journal = {journal} updateJournal = {updateJournal}/>
+          </Col>
+        ))}
+      </Row>
+      <Row>
+        <Col>
+          <Button onClick={() => setShowModal(true)}>Add</Button>
+        </Col>
+      </Row>
+      {showModal && <FormModal showModal={showModal} onClose={() => setShowModal(false)} addJournal={addJournal}  />}
+    </Container>
+
+    
   )
 }

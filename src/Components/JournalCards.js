@@ -1,26 +1,53 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Star, Trash, Pen } from "react-bootstrap-icons";
+import { Col, Row } from 'react-bootstrap';
 
-export const JournalCards = () => {
+export const JournalCards = ({journal, updateJournal}) => {
   return (
     <div>
         <Card>
             <Card.Body>
               <div className="row">
                 <div className="col-md-8">
-                  <Card.Title>Card title</Card.Title>
+                  <Card.Header>
+                    <Row>
+                      <Col>
+                        <Card.Title>{journal.title}</Card.Title>
+                      </Col>
+                      <Col>
+                        <Star></Star>
+                      </Col>
+                      <Col>
+                        <Pen onClick={() => updateJournal(journal.id, journal)}></Pen>
+                      </Col>
+                      <Col>
+                        <Trash></Trash>
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Card.Subtitle>Last Modified {journal.lastModified}</Card.Subtitle>
+                      <Card.Subtitle>Created At {journal.createdAt}</Card.Subtitle>
+                    </Row>
+                  </Card.Header>
                   <Card.Text>
-                    This is a longer card with supporting text below as a natural
-                    lead-in to additional content. This content is a little bit
-                    longer.
+                    {journal.desc}
                   </Card.Text>
                 </div>
                 <div className="col-md-4">
-                  <Card.Img variant="top" src="holder.js/100px160" />
+                  <Card.Img variant="top" src={journal.img} />
                 </div>
               </div>
             </Card.Body>
+            <Card.Footer>
+              <div>
+                Category: {journal.category}
+              </div>
+              <div>
+                Mood: {journal.mood}
+              </div>
+            </Card.Footer>
         </Card>
     </div>
   )

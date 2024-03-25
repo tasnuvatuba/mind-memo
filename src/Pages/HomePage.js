@@ -17,6 +17,7 @@ export const HomePage = () => {
   const setJournals = useJournalStore((state) => state.addJournal);
   const modifyJournals = useJournalStore((state) => state.updateJournal);
   const [isUpdatePressed, setIsUpdatePressed] = useState(false)
+  const [defaultJournal, setDefaultJournal] = useState({})
   
   const addJournal = (journal) => {
     console.log(journal);
@@ -26,7 +27,7 @@ export const HomePage = () => {
 
   const updateJournal = (journalId, newJournal) => {
     modifyJournals(journalId, newJournal);
-    setShowModal(false);
+    setIsUpdatePressed(false);
   }
 
   return (
@@ -34,7 +35,7 @@ export const HomePage = () => {
       <Row xs={1} md={1} className="g-4">
         {journals.map((journal, idx) => (
           <Col key={idx}>
-            <JournalCards journal = {journal} updateJournal = {updateJournal}/>
+            <JournalCards journal = {journal} setIsUpdatePressed = {setIsUpdatePressed} setDefaultJournal = {setDefaultJournal}/>
           </Col>
         ))}
       </Row>
@@ -44,6 +45,7 @@ export const HomePage = () => {
         </Col>
       </Row>
       {showModal && <FormModal showModal={showModal} onClose={() => setShowModal(false)} addJournal={addJournal}  />}
+      {isUpdatePressed && <FormModal showModal={isUpdatePressed} onClose={() => setIsUpdatePressed(false)} updateJournal={updateJournal} defaultJournal={defaultJournal}  />}
     </Container>
 
     

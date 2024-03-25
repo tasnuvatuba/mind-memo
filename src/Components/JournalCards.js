@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Star, Trash, Pen } from "react-bootstrap-icons";
 import { Col, Row } from 'react-bootstrap';
 
-export const JournalCards = ({journal, updateJournal}) => {
+export const JournalCards = ({journal, setIsUpdatePressed, setDefaultJournal}) => {
   return (
     <div>
         <Card>
@@ -20,7 +20,11 @@ export const JournalCards = ({journal, updateJournal}) => {
                         <Star></Star>
                       </Col>
                       <Col>
-                        <Pen onClick={() => updateJournal(journal.id, journal)}></Pen>
+                        <Pen onClick={() => {
+                          setIsUpdatePressed(true);
+                          setDefaultJournal(journal);
+
+                        }}></Pen>
                       </Col>
                       <Col>
                         <Trash></Trash>

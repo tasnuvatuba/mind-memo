@@ -9,7 +9,7 @@ import ReactQuill from 'react-quill';
 import parse from 'html-react-parser';
 
 
-export const JournalCards = ({journal}) => {
+export const JournalCards = ({journal, updateJournal, setShowModal}) => {
   return (
     <div>
         <Card >

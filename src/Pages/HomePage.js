@@ -57,7 +57,7 @@ export const HomePage = () => {
       <Row xs={1} md={1} className="g-4">
         {journals.map((journal, idx) => (
           <Col key={idx}>
-            <JournalCards journal = {journal} />
+            <JournalCards journal = {journal} updateJournal={updateJournal} setShowModal = {setShowModal}/>
           </Col>
         ))}
       </Row>

@@ -102,7 +102,7 @@ export const FormModal = ({showModal, onClose, addJournal, defaultJournal}) => {
                   fieldName="title"
                   onChangeHandler={onChangeHandler}
                   resetCounter={resetCounter}
-                  defaultValue={Journal.title}
+                  defaultValue={journal.title}
                   //isTitleEmpty = {isTitleEmpty}
                 />
               </Col>
@@ -115,7 +115,7 @@ export const FormModal = ({showModal, onClose, addJournal, defaultJournal}) => {
                   options={['Travelling', 'Food & Dining', 'Art & Creativity', 'Relationships', 'Learning', 'Self Reflection']}
                   onChangeHandler={onChangeHandler}
                   resetCounter={resetCounter}
-                  defaultValue={Journal.category}
+                  defaultValue={journal.category}
                 />
               </Col>
               <Col>
@@ -125,7 +125,7 @@ export const FormModal = ({showModal, onClose, addJournal, defaultJournal}) => {
                 options={["Happy", "Sad", "Neutral", "Angry"]}
                 onChangeHandler={onChangeHandler}
                 resetCounter={resetCounter}
-                defaultValue={Journal.mood}
+                defaultValue={journal.mood}
               />
               </Col>
               <Col>
@@ -134,7 +134,7 @@ export const FormModal = ({showModal, onClose, addJournal, defaultJournal}) => {
                 fieldName="img"
                 onChangeHandler={onChangeHandler}
                 resetCounter={resetCounter}
-                defaultValue={Journal.img}
+                defaultValue={journal.img}
               />
               </Col>
             </Row>
@@ -145,7 +145,7 @@ export const FormModal = ({showModal, onClose, addJournal, defaultJournal}) => {
                   fieldName="desc"
                   onChangeHandler={handleProcedureContentChange}
                   resetCounter={resetCounter}
-                  defaultValue={Journal.title}
+                  defaultValue={journal.title}
                 />
               </Col>
             </Row>

@@ -1,9 +1,9 @@
-:root {
+/* :root {
     --header-height: 3rem;
     --nav-width: 68px;
   
-    --first-color: #41635e;
-    --first-color-alt: #6b8c83;
+    --first-color: #627a6a;
+    --first-color-alt: #c9dec0;
     --white-color: #d2dcd3;
   }
   
@@ -152,3 +152,7 @@
       padding-left: calc(var(--nav-width) + 188px);
     }
   }
+
+
+  
+   */

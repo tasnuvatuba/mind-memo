@@ -4,6 +4,6 @@ import "../App.css"
 
 export const EmotionsPage = () => {
   return (
-    <div><h1>EmotionsPage</h1></div>
+    <div><h1></h1></div>
   )
 }

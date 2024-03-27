@@ -1,3 +1,4 @@
+
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import { CalendarPage } from "./Pages/CalendarPage";
@@ -7,19 +8,16 @@ import { MediaPage } from "./Pages/MediaPage";
 import Container from 'react-bootstrap/Container';
 import { Row, Col } from 'react-bootstrap';
 import { Journal } from 'react-bootstrap-icons';
-import Sidebar from "./Components/Sidebar";
+import Sidebar from "./Components/Sidebar/Sidebar";
 
-const mockJournals = [
-  
 
-]
 
 
 function App() {
 
-
   return (
-  <div>
+  <div className='background'>
+    <div>
     <Sidebar/>
     <Routes> 
       <Route path="/" element={<HomePage />} /> 
@@ -27,6 +25,10 @@ function App() {
       <Route path="/media" element={<MediaPage />} />
       <Route path="/emotions" element={<EmotionsPage />} />
     </Routes> 
+      
+
+    </div>
+    
     
   </div>
     

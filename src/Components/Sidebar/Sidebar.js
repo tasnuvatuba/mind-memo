@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './index.css';
+import './sidebar.css';
 import { Link, useLocation } from 'react-router-dom';
 
 const Sidebar = () => {

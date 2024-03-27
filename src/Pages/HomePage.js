@@ -5,10 +5,29 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from "react-bootstrap/Button";
 import { Container } from 'react-bootstrap';
-import { FormModal } from "../Components/FormModal";
-import {JournalCards} from "../Components/JournalCards";
+import { FormModal } from "../Components/Editor/FormModal";
+import {JournalCards} from "./JournalCards";
 import { useState } from "react";
 import useJournalStore from '../journalStore';
+import { uid } from "uid";
+
+export function formatDateWithTime(date) {
+  // Get the date components
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
+  const day = date.getDate().toString().padStart(2, '0');
+  
+  // Get the time components
+  const hours = date.getHours().toString().padStart(2, '0');
+  const minutes = date.getMinutes().toString().padStart(2, '0');
+  
+  // Construct the formatted string
+  const dateString = `${year}-${month}-${day}`;
+  const timeString = `${hours}:${minutes}`;
+  const formattedDateTime = `${dateString}, ${timeString}`;
+  
+  return formattedDateTime;
+}
 
 
 export const HomePage = () => {
@@ -16,38 +35,34 @@ export const HomePage = () => {
   const journals = useJournalStore((state) => state.journals);
   const setJournals = useJournalStore((state) => state.addJournal);
   const modifyJournals = useJournalStore((state) => state.updateJournal);
-  const [isUpdatePressed, setIsUpdatePressed] = useState(false)
-  const [defaultJournal, setDefaultJournal] = useState({})
   
   const addJournal = (journal) => {
-    console.log(journal);
     setJournals(journal);
     setShowModal(false);
   }
 
   const updateJournal = (journalId, newJournal) => {
     modifyJournals(journalId, newJournal);
-    setIsUpdatePressed(false);
   }
 
   return (
-    <Container>
-      <Row xs={1} md={1} className="g-4">
-        {journals.map((journal, idx) => (
-          <Col key={idx}>
-            <JournalCards journal = {journal} setIsUpdatePressed = {setIsUpdatePressed} setDefaultJournal = {setDefaultJournal}/>
-          </Col>
-        ))}
-      </Row>
+    
+    <Container className='pd-md-10'>
       <Row>
         <Col>
           <Button onClick={() => setShowModal(true)}>Add</Button>
         </Col>
       </Row>
-      {showModal && <FormModal showModal={showModal} onClose={() => setShowModal(false)} addJournal={addJournal}  />}
-      {isUpdatePressed && <FormModal showModal={isUpdatePressed} onClose={() => setIsUpdatePressed(false)} updateJournal={updateJournal} defaultJournal={defaultJournal}  />}
+      <FormModal showModal={showModal} onClose={() => setShowModal(false)} addJournal={addJournal} ></FormModal>
+      <Row xs={1} md={1} className="g-4">
+        {journals.map((journal, idx) => (
+          <Col key={idx}>
+            <JournalCards journal = {journal} />
+          </Col>
+        ))}
+      </Row>
+      {/* {isUpdatePressed && <FormModal showModal={isUpdatePressed} onClose={() => setIsUpdatePressed(false)} updateJournal={updateJournal} defaultJournal={defaultJournal}  />} */}
     </Container>
-
     
-  )
+  );
 }

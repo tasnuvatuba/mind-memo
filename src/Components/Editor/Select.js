@@ -10,9 +10,9 @@ export const Select = ({fieldName, label, options, onChangeHandler, resetCounter
     }
   }, [resetCounter])
   return (
-    <Form.Group controlId={fieldName}>
+    <Form.Group className="mb-3" controlId={fieldName}>
       <Form.Label>{label}</Form.Label>
-      <Form.Select name={fieldName} onChange={onChangeHandler} className="mb-3" defaultValue={defaultValue}>
+      <Form.Select name={fieldName} onChange={onChangeHandler} defaultValue={defaultValue}>
         {options.map((x, i) => (
           <option key={i} value={x}>
             {x}

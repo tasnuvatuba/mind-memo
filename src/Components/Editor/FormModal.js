@@ -28,7 +28,7 @@ export function formatDateWithTime(date) {
   return formattedDateTime;
 }
 
-export const FormModal = ({showModal, onClose, addJournal, defaultJournal}) => {
+export const FormModal = ({showModal, setShowModal, addJournal, updateJournal, defaultJournal, label}) => {
   const [journal, setJournal] = useState({});
   const [resetCounter, setResetCounter] = useState(0);
 
@@ -44,7 +44,7 @@ export const FormModal = ({showModal, onClose, addJournal, defaultJournal}) => {
         id: uid(),
         title: "New Journal",
         desc: "",
-        category: "Travelling",
+        category: "Food & Dining",
         mood: "Sad",
         createdAt: formatDateWithTime(new Date()),
         lastModified: formatDateWithTime(new Date()),
@@ -76,34 +76,42 @@ export const FormModal = ({showModal, onClose, addJournal, defaultJournal}) => {
   }
 
   const handleProcedureContentChange = (content) => {
-      console.log("content---->", content);
+      //console.log("content---->", content);
       setJournal({ ...journal, desc: content })
   };
 
   const submit = (journal) =>{
+    if(label == 'add'){
       addJournal(journal);
-      reset();
+    }
+    else if(label == 'update'){
+      updateJournal(journal.id, journal)
+    }
+    reset();
   }
 
-  
-
+  const close = () =>{
+    setShowModal(false);
+    reset();
+    
+}
   return (
-    <Modal show={showModal} onHide={onClose} size="lg" centered >
+    <Modal show={showModal} onHide={close} size="lg" centered >
       <Modal.Header closeButton>
         <Modal.Title>Title</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
           <Container>
+           <Button onClick={() => console.log(journal)}>print object</Button>
             <Row>
               <Col>
                 <Input
-                  label={"Title*"}
+                  label={"Title"}
                   fieldName="title"
                   onChangeHandler={onChangeHandler}
                   resetCounter={resetCounter}
                   defaultValue={journal.title}
-                  //isTitleEmpty = {isTitleEmpty}
                 />
               </Col>
             </Row>

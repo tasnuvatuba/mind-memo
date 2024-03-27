@@ -15,7 +15,7 @@ const useJournalStore = create((set) => ({
               + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
               + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
               + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>",
-        category: "Travelling",
+        category: "Learning",
         mood: "Neutral",
         fav: false,
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png"
@@ -23,10 +23,10 @@ const useJournalStore = create((set) => ({
     
       { 
         id: uid(),
-        title: "Journal 1",
+        title: "Journal 2",
         lastModified: "25.03.2024",
         createdAt: "25.03.2024",
-        desc: "<p>Desc of journal 1</p>",
+        desc: "<p>Desc of journal 2</p>",
         category: "Travelling",
         mood: "Sad",
         fav: false,
@@ -35,27 +35,16 @@ const useJournalStore = create((set) => ({
     
       { 
         id: uid(),
-        title: "Journal 1",
+        title: "Journal 3",
         lastModified: "25.03.2024",
         createdAt: "25.03.2024",
-        desc: "<p>Desc of journal 1</p>",
+        desc: "<p>Desc of journal 3</p>",
         category: "Travelling",
         mood: "Happy",
         fav: false,
         img: "https://st2.depositphotos.com/27201292/44377/i/450/depositphotos_443773160-stock-photo-vertical-shot-car-side-mirror.jpg"
       },
 
-      { 
-        id: uid(),
-        title: "Journal 1",
-        lastModified: "25.03.2024",
-        createdAt: "25.03.2024",
-        desc: "<p>Desc of journal 1</p>",
-        category: "Travelling",
-        mood: "Angry",
-        fav: false,
-        img: "https://st2.depositphotos.com/27201292/44377/i/450/depositphotos_443773160-stock-photo-vertical-shot-car-side-mirror.jpg"
-      }
   ],
 
   addJournal: (journal) => set((state) => ({ journals: [...state.journals, journal] })),

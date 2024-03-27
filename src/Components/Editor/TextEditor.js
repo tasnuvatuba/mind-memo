@@ -10,7 +10,7 @@ export const TextEditor = ({label, fieldName,  onChangeHandler, resetCounter, de
     useEffect(() => {
         if (textEditor && textEditor.current) {
             console.log(textEditor.current.value)
-            textEditor.current.value = defaultValue ? defaultValue : ""
+            textEditor.current.value = defaultValue ? defaultValue : "<p></p>"
         }
         }, [resetCounter])
 
@@ -50,6 +50,7 @@ export const TextEditor = ({label, fieldName,  onChangeHandler, resetCounter, de
                 formats={formats}
                 placeholder="write description ...."
                 onChange={onChangeHandler}
+                
                 >
             </ReactQuill>
             </div>

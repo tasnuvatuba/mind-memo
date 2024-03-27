@@ -9,7 +9,7 @@ import ReactQuill from 'react-quill';
 import parse from 'html-react-parser';
 
 
-export const JournalCards = ({journal, updateJournal, setShowModal}) => {
+export const JournalCards = ({journal, handleEditClick, deleteJournal}) => {
   return (
     <div>
         <Card >
@@ -24,9 +24,9 @@ export const JournalCards = ({journal, updateJournal, setShowModal}) => {
                       <Col className="d-flex justify-content-end">
                         <Stack direction="horizontal" gap={3}>
                           <Star style={{fontSize: '1.5rem'}}></Star>
-                          <Pen style={{fontSize: '1.5rem'}} 
+                          <Pen style={{fontSize: '1.5rem'}} onClick={() => {handleEditClick(journal);}}
                           ></Pen>
-                          <Trash style={{fontSize: '1.5rem'}}></Trash>
+                          <Trash style={{fontSize: '1.5rem'}} onClick={() => {deleteJournal(journal.id);}}></Trash>
                         </Stack>
                       </Col>
                     </Row>

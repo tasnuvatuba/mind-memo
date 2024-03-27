@@ -9,15 +9,14 @@ import Container from 'react-bootstrap/Container';
 import { Row, Col } from 'react-bootstrap';
 import { Journal } from 'react-bootstrap-icons';
 import Sidebar from "./Components/Sidebar/Sidebar";
-
-
-
+import {DrawerAppBar} from "./Components/Appbar/DrawerAppBar";
 
 function App() {
 
   return (
   <div className='background'>
     <div>
+    {/* <DrawerAppBar/> */}
     <Sidebar/>
     <Routes> 
       <Route path="/" element={<HomePage />} /> 

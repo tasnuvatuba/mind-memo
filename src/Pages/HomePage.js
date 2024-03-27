@@ -29,12 +29,14 @@ export function formatDateWithTime(date) {
   return formattedDateTime;
 }
 
-
 export const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
+  const [editClicked, setEditClicked] = useState(false);
+  const [defaultJournal, setDefaultJournal] = useState();
   const journals = useJournalStore((state) => state.journals);
   const setJournals = useJournalStore((state) => state.addJournal);
   const modifyJournals = useJournalStore((state) => state.updateJournal);
+  const deleteJournal = useJournalStore((state) => state.deleteJournal);
   
   const addJournal = (journal) => {
     setJournals(journal);
@@ -42,8 +44,19 @@ export const HomePage = () => {
   }
 
   const updateJournal = (journalId, newJournal) => {
+    newJournal.lastModified = formatDateWithTime(new Date());
     modifyJournals(journalId, newJournal);
+    setShowModal(false);
+  }   
+
+  const handleEditClick = (journal) => {
+    setDefaultJournal(journal);
+    setEditClicked(true);
+    setShowModal(true);
+    
+
   }
+
 
   return (
     
@@ -53,15 +66,15 @@ export const HomePage = () => {
           <Button onClick={() => setShowModal(true)}>Add</Button>
         </Col>
       </Row>
-      <FormModal showModal={showModal} onClose={() => setShowModal(false)} addJournal={addJournal} ></FormModal>
+      {editClicked && <FormModal showModal={showModal} setShowModal= {setShowModal} defaultJournal={defaultJournal} updateJournal={updateJournal} label = "update"> </FormModal>}
+      {!editClicked && <FormModal showModal={showModal} setShowModal= {setShowModal} addJournal={addJournal} label="add"></FormModal>}
       <Row xs={1} md={1} className="g-4">
         {journals.map((journal, idx) => (
           <Col key={idx}>
-            <JournalCards journal = {journal} updateJournal={updateJournal} setShowModal = {setShowModal}/>
+            <JournalCards journal = {journal} handleEditClick={handleEditClick} deleteJournal={deleteJournal}/>
           </Col>
         ))}
       </Row>
-      {/* {isUpdatePressed && <FormModal showModal={isUpdatePressed} onClose={() => setIsUpdatePressed(false)} updateJournal={updateJournal} defaultJournal={defaultJournal}  />} */}
     </Container>
     
   );

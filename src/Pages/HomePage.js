@@ -10,6 +10,9 @@ import {JournalCards} from "./JournalCards";
 import { useState } from "react";
 import useJournalStore from '../journalStore';
 import { uid } from "uid";
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+
 
 export function formatDateWithTime(date) {
   // Get the date components
@@ -53,25 +56,33 @@ export const HomePage = () => {
     setDefaultJournal(journal);
     setEditClicked(true);
     setShowModal(true);
-    
-
+  }
+  
+  const handleStarClicked = (journal) => {
+    journal.fav = !journal.fav;  //directly modifying object is not recommeneded in react
+    modifyJournals(journal.id, journal)
   }
 
 
   return (
     
     <Container className='pd-md-10'>
-      <Row>
-        <Col>
-          <Button onClick={() => setShowModal(true)}>Add</Button>
-        </Col>
-      </Row>
+      <Fab
+        color="primary"
+        aria-label="Add"
+        style={{ position: 'fixed', bottom: '30px', right: '10%', zIndex: '1000' }}
+        onClick={() => setShowModal(true)}
+      >
+        <AddIcon />
+      </Fab>
+      
       {editClicked && <FormModal showModal={showModal} setShowModal= {setShowModal} defaultJournal={defaultJournal} updateJournal={updateJournal} label = "update"> </FormModal>}
       {!editClicked && <FormModal showModal={showModal} setShowModal= {setShowModal} addJournal={addJournal} label="add"></FormModal>}
       <Row xs={1} md={1} className="g-4">
+        
         {journals.map((journal, idx) => (
           <Col key={idx}>
-            <JournalCards journal = {journal} handleEditClick={handleEditClick} deleteJournal={deleteJournal}/>
+            <JournalCards journal = {journal} handleStarClicked={handleStarClicked} handleEditClick={handleEditClick} deleteJournal={deleteJournal}/>
           </Col>
         ))}
       </Row>

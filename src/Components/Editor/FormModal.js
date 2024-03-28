@@ -103,7 +103,7 @@ export const FormModal = ({showModal, setShowModal, addJournal, updateJournal, d
       <Modal.Body>
         <Form>
           <Container>
-           <Button onClick={() => console.log(journal)}>print object</Button>
+           {/* <Button onClick={() => console.log(journal)}>print object</Button> */}
             <Row>
               <Col>
                 <Input
@@ -153,7 +153,7 @@ export const FormModal = ({showModal, setShowModal, addJournal, updateJournal, d
                   fieldName="desc"
                   onChangeHandler={handleProcedureContentChange}
                   resetCounter={resetCounter}
-                  defaultValue={journal.title}
+                  defaultValue={journal.desc}
                 />
               </Col>
             </Row>

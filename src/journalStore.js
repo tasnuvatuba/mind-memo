@@ -17,7 +17,7 @@ const useJournalStore = create((set) => ({
               + "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore</p>",
         category: "Learning",
         mood: "Neutral",
-        fav: false,
+        fav: true,
         img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png"
       },
     

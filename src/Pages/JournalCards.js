@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from 'react-bootstrap/Card';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Star, Trash, Pen } from "react-bootstrap-icons";
+import { Star, StarFill, Trash, Pen } from "react-bootstrap-icons";
 import { Col, Row } from 'react-bootstrap';
 import { Stack } from 'react-bootstrap';
 import { Emoji } from 'emoji-mart';
@@ -9,7 +9,7 @@ import ReactQuill from 'react-quill';
 import parse from 'html-react-parser';
 
 
-export const JournalCards = ({journal, handleEditClick, deleteJournal}) => {
+export const JournalCards = ({journal, handleStarClicked, handleEditClick, deleteJournal}) => {
   return (
     <div>
         <Card >
@@ -23,7 +23,8 @@ export const JournalCards = ({journal, handleEditClick, deleteJournal}) => {
                       </Col>
                       <Col className="d-flex justify-content-end">
                         <Stack direction="horizontal" gap={3}>
-                          <Star style={{fontSize: '1.5rem'}}></Star>
+                          {journal.fav && (<StarFill style={{fontSize: '1.5rem', fill:'#f2bc18'}} onClick={() => handleStarClicked(journal)}></StarFill>)}
+                          {!journal.fav && (<Star style={{fontSize: '1.5rem'}} onClick={() => handleStarClicked(journal)}></Star>)}
                           <Pen style={{fontSize: '1.5rem'}} onClick={() => {handleEditClick(journal);}}
                           ></Pen>
                           <Trash style={{fontSize: '1.5rem'}} onClick={() => {deleteJournal(journal.id);}}></Trash>

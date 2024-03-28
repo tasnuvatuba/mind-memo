@@ -50,7 +50,7 @@ export const TextEditor = ({label, fieldName,  onChangeHandler, resetCounter, de
                 formats={formats}
                 placeholder="write description ...."
                 onChange={onChangeHandler}
-                
+                defaultValue={defaultValue}
                 >
             </ReactQuill>
             </div>

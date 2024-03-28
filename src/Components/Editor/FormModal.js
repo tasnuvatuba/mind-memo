@@ -33,9 +33,16 @@ export const FormModal = ({showModal, setShowModal, addJournal, updateJournal, d
   const [resetCounter, setResetCounter] = useState(0);
 
 
+  // useEffect(() => {
+  //   console.log("triggering useEffect")
+  //   reset();
+  // }, [defaultJournal]);
+
   useEffect(() => {
-    reset();
-  }, [defaultJournal]);
+    console.log("journal chnaged" );
+    reset()
+  }, [journal])
+  
 
   const reset = () => {
     setJournal(
@@ -49,8 +56,9 @@ export const FormModal = ({showModal, setShowModal, addJournal, updateJournal, d
         createdAt: formatDateWithTime(new Date()),
         lastModified: formatDateWithTime(new Date()),
      }   
-    )
-    setResetCounter(resetCounter + 1)  
+    );
+    setResetCounter(resetCounter + 1);  
+    console.log(journal);
   }
 
   const onChangeHandler = (e) => {
@@ -103,7 +111,7 @@ export const FormModal = ({showModal, setShowModal, addJournal, updateJournal, d
       <Modal.Body>
         <Form>
           <Container>
-           {/* <Button onClick={() => console.log(journal)}>print object</Button> */}
+           <Button onClick={() => console.log(journal)}>print object</Button>
             <Row>
               <Col>
                 <Input

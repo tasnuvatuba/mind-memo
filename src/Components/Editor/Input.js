@@ -5,10 +5,11 @@ export const Input = ({label, fieldName, type = "text", onChangeHandler, resetCo
   const input = useRef(null)
   useEffect(() => {
     if (input && input.current) {
+      console.log("from input + " )
       console.log(input.current.value)
       input.current.value = defaultValue ? defaultValue : ""
     }
-  }, [resetCounter])
+  }, [resetCounter]) 
   return (
     
     <Form.Group className="mb-3" controlId={fieldName}>

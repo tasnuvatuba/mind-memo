@@ -1,0 +1,18 @@
+.calendar-container {
+    width: 80%; /* Adjust width as needed */
+    /* height: 70vh; */
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px; /* Add padding */
+    background-color: #ffffff; /* Set background color */
+    border-radius: 8px; /* Add border radius */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add box shadow */
+  }
+  
+  .calendar {
+    width: 100%; /* Make calendar fill its container */
+    height: 100%;
+  }
+
+  .custom-tile  {
+    height: 90px /* Adjust the height of each tile */
+  }

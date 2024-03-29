@@ -8,10 +8,21 @@ import Container from 'react-bootstrap/Container';
 import { Row, Col } from 'react-bootstrap';
 import { Journal } from 'react-bootstrap-icons';
 import {DrawerAppBar} from "./Components/Appbar/DrawerAppBar";
+import { ThemeProvider } from '@mui/material/styles';
+import { createTheme } from '@mui/material/styles';
+
 
 function App() {
+  const tealTheme = createTheme({
+    palette: {
+      primary: {
+        main: '#0097a7', // Replace with your desired teal shade (hex code)
+      },
+    },
+  });
 
   return (
+  <ThemeProvider theme={tealTheme}>
   <div className='background'>
     <div>
     <DrawerAppBar/>
@@ -20,12 +31,9 @@ function App() {
       <Route path="/calendar" element={<CalendarPage />} />
       <Route path="/about" element={<AboutPage />} />
     </Routes> 
-      
-
-    </div>
-    
-    
+    </div> 
   </div>
+  </ThemeProvider>
     
     
   );

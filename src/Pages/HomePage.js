@@ -44,12 +44,14 @@ export const HomePage = () => {
   const addJournal = (journal) => {
     setJournals(journal);
     setShowModal(false);
+    setDefaultJournal();
   }
 
-  const updateJournal = (journalId, newJournal) => {
+  const updateJournal = (newJournal) => {
     newJournal.lastModified = formatDateWithTime(new Date());
-    modifyJournals(journalId, newJournal);
+    modifyJournals(newJournal.id, newJournal);
     setShowModal(false);
+    setDefaultJournal();
   }   
 
   const handleEditClick = (journal) => {
@@ -64,28 +66,33 @@ export const HomePage = () => {
   }
 
 
+  const onClose = () =>{
+    setShowModal(false);
+    setDefaultJournal();
+  }
+
+
   return (
-    
+
     <Container className='pd-md-10'>
-      <Fab
-        color="primary"
-        aria-label="Add"
-        style={{ position: 'fixed', bottom: '30px', right: '10%', zIndex: '1000' }}
-        onClick={() => setShowModal(true)}
-      >
-        <AddIcon />
-      </Fab>
-      
-      {editClicked && <FormModal showModal={showModal} setShowModal= {setShowModal} defaultJournal={defaultJournal} updateJournal={updateJournal} label = "update"> </FormModal>}
-      {!editClicked && <FormModal showModal={showModal} setShowModal= {setShowModal} addJournal={addJournal} label="add"></FormModal>}
-      <Row xs={1} md={1} className="g-4">
+        <Fab
+          color="primary"
+          aria-label="Add"
+          style={{ position: 'fixed', bottom: '30px', right: '10%', zIndex: '1000' }}
+          onClick={() => setShowModal(true)}
+        >
+          <AddIcon />
+        </Fab>
         
-        {journals.map((journal, idx) => (
-          <Col key={idx}>
-            <JournalCards journal = {journal} handleStarClicked={handleStarClicked} handleEditClick={handleEditClick} deleteJournal={deleteJournal}/>
-          </Col>
-        ))}
-      </Row>
+        {editClicked && <FormModal showModal={showModal} onClose={onClose} defaultJournal={defaultJournal} submit={updateJournal} label = "update"> </FormModal>}
+        {!editClicked && <FormModal showModal={showModal} onClose={onClose} submit={addJournal} label="add"></FormModal>}
+        <Row xs={1} md={1} className="g-4">
+          {journals.map((journal, idx) => (
+            <Col key={idx}>
+              <JournalCards journal = {journal} handleStarClicked={handleStarClicked} handleEditClick={handleEditClick} deleteJournal={deleteJournal}/>
+            </Col>
+          ))}
+        </Row>
     </Container>
     
   );

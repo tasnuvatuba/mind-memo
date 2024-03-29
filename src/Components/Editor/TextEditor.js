@@ -2,17 +2,18 @@ import React from "react";
 import 'quill/dist/quill.snow.css'
 import ReactQuill from 'react-quill'
 import { Form } from "react-bootstrap";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 
 export const TextEditor = ({label, fieldName,  onChangeHandler, resetCounter, defaultValue}) => {
-    const textEditor = useRef(null)
+  
+    const [editorDefaultValue, setEditorDefaultValue] = useState(defaultValue?defaultValue:"<p></p>");
     useEffect(() => {
-        if (textEditor && textEditor.current) {
-            console.log(textEditor.current.value)
-            textEditor.current.value = defaultValue ? defaultValue : "<p></p>"
-        }
-        }, [resetCounter])
+      console.log("triggering useEffect from texteditor++++++++");
+      console.log(defaultValue);
+      setEditorDefaultValue(defaultValue);
+    }, [resetCounter])
+    
 
     var modules = {
         toolbar: [
@@ -41,7 +42,7 @@ export const TextEditor = ({label, fieldName,  onChangeHandler, resetCounter, de
 
     return (
         <Form.Group className="mb-3">
-            <Form.Label>Details</Form.Label>
+            <Form.Label>{label}</Form.Label>
             <div className="mb-3">
             <ReactQuill
                 style={{ height: "200px" }}
@@ -50,7 +51,7 @@ export const TextEditor = ({label, fieldName,  onChangeHandler, resetCounter, de
                 formats={formats}
                 placeholder="write description ...."
                 onChange={onChangeHandler}
-                defaultValue={defaultValue}
+                value={editorDefaultValue}
                 >
             </ReactQuill>
             </div>

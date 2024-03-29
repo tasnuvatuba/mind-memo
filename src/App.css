@@ -3,5 +3,12 @@ h1 {
 }
 
 .background {
-  background-color: #f1f1f1;
+  background-color: #f0f4f9;
+  /* background-image: url('./Images/sky-blue-clouds.jpg'); */
+  /* background-repeat: repeat-y; */
+  min-height: 100vh;
+  height: 100%;
+  width: 100vw;
+  /* background-size: cover;
+  background-attachment: fixed; */
 }

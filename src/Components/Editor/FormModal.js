@@ -28,21 +28,15 @@ export function formatDateWithTime(date) {
   return formattedDateTime;
 }
 
-export const FormModal = ({showModal, setShowModal, addJournal, updateJournal, defaultJournal, label}) => {
+export const FormModal = ({showModal, onClose, submit, defaultJournal, label}) => {
   const [journal, setJournal] = useState({});
   const [resetCounter, setResetCounter] = useState(0);
 
-
-  // useEffect(() => {
-  //   console.log("triggering useEffect")
-  //   reset();
-  // }, [defaultJournal]);
-
   useEffect(() => {
-    console.log("journal chnaged" );
-    reset()
-  }, [journal])
-  
+    console.log("default journal changed +++++++++");
+    console.log(defaultJournal);
+    reset();
+  }, [defaultJournal]);
 
   const reset = () => {
     setJournal(
@@ -57,9 +51,18 @@ export const FormModal = ({showModal, setShowModal, addJournal, updateJournal, d
         lastModified: formatDateWithTime(new Date()),
      }   
     );
-    setResetCounter(resetCounter + 1);  
-    console.log(journal);
+    //console.log(journal);
   }
+
+  useEffect(() => {
+    console.log("journal chnaged+++++++++" );
+    console.log(defaultJournal);
+    console.log(journal);
+    setResetCounter(resetCounter + 1);  
+    console.log(resetCounter);
+  }, [journal])
+  
+
 
   const onChangeHandler = (e) => {
     switch (e.target.name) {
@@ -88,23 +91,10 @@ export const FormModal = ({showModal, setShowModal, addJournal, updateJournal, d
       setJournal({ ...journal, desc: content })
   };
 
-  const submit = (journal) =>{
-    if(label == 'add'){
-      addJournal(journal);
-    }
-    else if(label == 'update'){
-      updateJournal(journal.id, journal)
-    }
-    reset();
-  }
+  
 
-  const close = () =>{
-    setShowModal(false);
-    reset();
-    
-}
   return (
-    <Modal show={showModal} onHide={close} size="lg" centered >
+    <Modal show={showModal} onHide={onClose} size="lg" centered >
       <Modal.Header closeButton>
         <Modal.Title>Title</Modal.Title>
       </Modal.Header>

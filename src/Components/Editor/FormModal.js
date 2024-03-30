@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal } from "react-bootstrap";
+import { ModalTemplate } from "../ModalTemplate";
 import Button from "react-bootstrap/Button";
 import Form from 'react-bootstrap/Form';
 import { Input } from "./Input";
@@ -9,24 +9,9 @@ import { useState, useEffect } from "react";
 import { uid } from "uid";
 import { TextEditor } from "./TextEditor";
 import { Container, Row, Col } from "react-bootstrap";
+import { formatDateWithTime } from "../../services/DateTimeFormatService";
 
-export function formatDateWithTime(date) {
-  // Get the date components
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
-  const day = date.getDate().toString().padStart(2, '0');
-  
-  // Get the time components
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  
-  // Construct the formatted string
-  const dateString = `${year}-${month}-${day}`;
-  const timeString = `${hours}:${minutes}`;
-  const formattedDateTime = `${dateString}, ${timeString}`;
-  
-  return formattedDateTime;
-}
+
 
 export const FormModal = ({showModal, onClose, submit, defaultJournal, label}) => {
   const [journal, setJournal] = useState({});
@@ -51,7 +36,7 @@ export const FormModal = ({showModal, onClose, submit, defaultJournal, label}) =
         lastModified: formatDateWithTime(new Date()),
      }   
     );
-    //console.log(journal);
+    //setResetCounter(resetCounter + 1); 
   }
 
   useEffect(() => {
@@ -87,21 +72,20 @@ export const FormModal = ({showModal, onClose, submit, defaultJournal, label}) =
   }
 
   const handleProcedureContentChange = (content) => {
-      //console.log("content---->", content);
+      console.log("content---->", content);
       setJournal({ ...journal, desc: content })
   };
 
-  
+  const submitFormModal = () => {
+    submit(journal);
+  }
+
 
   return (
-    <Modal show={showModal} onHide={onClose} size="lg" centered >
-      <Modal.Header closeButton>
-        <Modal.Title>Title</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
+      <ModalTemplate showModal={showModal} onClose={onClose} submit={submitFormModal} label={label}>
         <Form>
           <Container>
-           <Button onClick={() => console.log(journal)}>print object</Button>
+           {/* <Button onClick={() => console.log(journal)}>print object</Button> */}
             <Row>
               <Col>
                 <Input
@@ -157,12 +141,6 @@ export const FormModal = ({showModal, onClose, submit, defaultJournal, label}) =
             </Row>
           </Container> 
         </Form>  
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={() => {console.log(journal); submit(journal)}}>
-          Save
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    </ModalTemplate>
   );
 }

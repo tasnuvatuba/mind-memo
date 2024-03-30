@@ -6,45 +6,45 @@ import Row from 'react-bootstrap/Row';
 import Button from "react-bootstrap/Button";
 import { Container } from 'react-bootstrap';
 import { FormModal } from "../Components/Editor/FormModal";
-import {JournalCards} from "./JournalCards";
-import { useState } from "react";
+import {JournalCards} from "../Components/JournalCards";
+import { useState, useEffect } from "react";
 import useJournalStore from '../journalStore';
 import { uid } from "uid";
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
+import { formatDateWithTime } from "../services/DateTimeFormatService";
+import { SearchComponent } from "../Components/SearchComponent";
 
-
-export function formatDateWithTime(date) {
-  // Get the date components
-  const year = date.getFullYear();
-  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Months are zero-based
-  const day = date.getDate().toString().padStart(2, '0');
-  
-  // Get the time components
-  const hours = date.getHours().toString().padStart(2, '0');
-  const minutes = date.getMinutes().toString().padStart(2, '0');
-  
-  // Construct the formatted string
-  const dateString = `${year}-${month}-${day}`;
-  const timeString = `${hours}:${minutes}`;
-  const formattedDateTime = `${dateString}, ${timeString}`;
-  
-  return formattedDateTime;
-}
 
 export const HomePage = () => {
   const [showModal, setShowModal] = useState(false);
   const [editClicked, setEditClicked] = useState(false);
   const [defaultJournal, setDefaultJournal] = useState();
   const journals = useJournalStore((state) => state.journals);
+  const [journalsOnScreen, setJournalsOnScreen] = useState(journals);
   const setJournals = useJournalStore((state) => state.addJournal);
   const modifyJournals = useJournalStore((state) => state.updateJournal);
   const deleteJournal = useJournalStore((state) => state.deleteJournal);
+
+  useEffect(() => {
+    setJournalsOnScreen(journals)
+  }, [journals]);
+  
   
   const addJournal = (journal) => {
     setJournals(journal);
+    setDefaultJournal({
+      id: uid(),
+      title: "New Journal",
+      desc: "",
+      category: "Food & Dining",
+      mood: "Sad",
+      createdAt: formatDateWithTime(new Date()),
+      lastModified: formatDateWithTime(new Date()),
+    });
     setShowModal(false);
-    setDefaultJournal();
+    console.log(defaultJournal);
+
   }
 
   const updateJournal = (newJournal) => {
@@ -52,6 +52,7 @@ export const HomePage = () => {
     modifyJournals(newJournal.id, newJournal);
     setShowModal(false);
     setDefaultJournal();
+    setEditClicked(false);
   }   
 
   const handleEditClick = (journal) => {
@@ -71,10 +72,26 @@ export const HomePage = () => {
     setDefaultJournal();
   }
 
+  const filterBySearch = (searchQuery) => {
+    if (!searchQuery) {
+      setJournalsOnScreen(journals);
+    } else {
+      const filteredJournals = journals.filter(
+        (journal) =>
+          journal.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          journal.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          journal.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          journal.mood.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setJournalsOnScreen(filteredJournals);
+    }
+  };
+
 
   return (
 
     <Container className='pd-md-10'>
+
         <Fab
           color="primary"
           aria-label="Add"
@@ -84,10 +101,15 @@ export const HomePage = () => {
           <AddIcon />
         </Fab>
         
-        {editClicked && <FormModal showModal={showModal} onClose={onClose} defaultJournal={defaultJournal} submit={updateJournal} label = "update"> </FormModal>}
-        {!editClicked && <FormModal showModal={showModal} onClose={onClose} submit={addJournal} label="add"></FormModal>}
+        {editClicked && <FormModal showModal={showModal} onClose={onClose} defaultJournal={defaultJournal} submit={updateJournal} label = "Update"> </FormModal>}
+        {!editClicked && <FormModal showModal={showModal} onClose={onClose} defaultJournal={defaultJournal} submit={addJournal} label="Add"></FormModal>}
+        <Row>
+          <Col className='pb-3'>
+            <SearchComponent filterBySearch={filterBySearch}/>
+          </Col>
+        </Row>
         <Row xs={1} md={1} className="g-4">
-          {journals.map((journal, idx) => (
+          {journalsOnScreen.map((journal, idx) => (
             <Col key={idx}>
               <JournalCards journal = {journal} handleStarClicked={handleStarClicked} handleEditClick={handleEditClick} deleteJournal={deleteJournal}/>
             </Col>

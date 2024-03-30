@@ -6,8 +6,8 @@ const useJournalStore = create((set) => ({
     {   
         id: uid(),
         title: "Journal 1",
-        lastModified: "25.03.2024",
-        createdAt: "25.03.2024",
+        lastModified: "2024-03-30, 09:27",
+        createdAt: "2024-03-30, 09:27",
         desc: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
               + "Lorem <strike>ipsum</strike> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
               + "Lorem <span style=\"color: rgb(230, 0, 0);\">bvjkshsagy</span>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
@@ -24,8 +24,8 @@ const useJournalStore = create((set) => ({
       { 
         id: uid(),
         title: "Journal 2",
-        lastModified: "25.03.2024",
-        createdAt: "25.03.2024",
+        lastModified: "2024-03-29, 09:27",
+        createdAt: "2024-03-29, 09:27",
         desc: "<p>Desc of journal 2</p>",
         category: "Travelling",
         mood: "Sad",
@@ -36,8 +36,8 @@ const useJournalStore = create((set) => ({
       { 
         id: uid(),
         title: "Journal 3",
-        lastModified: "25.03.2024",
-        createdAt: "25.03.2024",
+        lastModified: "2024-03-28, 09:27",
+        createdAt: "2024-03-28, 09:27",
         desc: "<p>Desc of journal 3</p>",
         category: "Travelling",
         mood: "Happy",

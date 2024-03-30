@@ -37,7 +37,7 @@ export const JournalCards = ({journal, handleStarClicked, handleEditClick, delet
                     </Row>
                   </Card.Header>
                   <Card.Text>
-                    <div > {parse(journal.desc)} </div>
+                    <div style={{padding: '10px' }}> {parse(journal.desc)} </div>
                   </Card.Text>
                 </div>
                 <div className="col-md-4">

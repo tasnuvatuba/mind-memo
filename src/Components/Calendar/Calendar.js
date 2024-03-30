@@ -2,18 +2,23 @@ import React, { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './Calendar.css'
+import { formatDateWithTime, getDateString } from "../../services/DateTimeFormatService";
 
-const CustomCalendar = () => {
+const CustomCalendar = ({journals}) => {
   const [selectedDate, setSelectedDate] = useState(null);
+
+  const emoji = {
+    happy: '😀',
+    sad: '😥',
+    neutral: '😐',
+    angry: '😡'
+  }
 
   const handleDateClick = (date) => {
     setSelectedDate(date);
     
   };
 
-  const tileClassName = ({date}) => {
-    return 
-  }
 
   useEffect(() => {
     console.log(selectedDate);
@@ -25,13 +30,16 @@ const CustomCalendar = () => {
       <Calendar className="calendar"
         onClickDay={handleDateClick}
         tileContent={({ date }) => {
-          return <div className="custom-tile" />;
+          const journal = journals.find(journal => getDateString(journal.createdAt) === getDateString(formatDateWithTime(date)));
+
+          return journal?.img ? (
+            <img src={journal.img} alt={`Journal entry for ${date}`} className="journal-image" />
+            
+          ) : (
+            <div className="custom-tile" />
+          );
         }}
-        // tileContent={({ date }) => {
-        //   if (date.getDate() === selectedDate?.getDate()) {
-        //     return <img src="image-url" alt="Image" />;
-        //   }
-        // }}
+        
       />
     </div>
   );

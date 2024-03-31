@@ -34,6 +34,7 @@ export const FormModal = ({showModal, onClose, submit, defaultJournal, label}) =
         mood: "Sad",
         createdAt: formatDateWithTime(new Date()),
         lastModified: formatDateWithTime(new Date()),
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png"
      }   
     );
     //setResetCounter(resetCounter + 1); 

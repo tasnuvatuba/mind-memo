@@ -10,9 +10,7 @@ export const ModalTemplate = ({showModal, onClose, submit, label, children}) => 
       </Modal.Header>
       <Modal.Body>{children}</Modal.Body>
       <Modal.Footer style={{ marginRight: '15px' }}>
-        <Button variant="contained" onClick={submit}>
-          {label}
-        </Button>
+        {label !== 'Details' && <Button variant="contained" onClick={submit}>{label}</Button>}
       </Modal.Footer>
     </Modal>
   )

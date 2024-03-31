@@ -11,6 +11,7 @@
   .calendar {
     width: 100%; /* Make calendar fill its container */
     height: 100%;
+    
   }
 
   .custom-tile  {

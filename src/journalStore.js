@@ -5,9 +5,9 @@ const useJournalStore = create((set) => ({
   journals: [
     {   
         id: uid(),
-        title: "Journal 1",
-        lastModified: "2024-03-30, 09:27",
-        createdAt: "2024-03-30, 09:27",
+        title: "Yellow",
+        lastModified: "2024-03-09, 09:27",
+        createdAt: "2024-03-09, 09:27",
         desc: "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
               + "Lorem <strike>ipsum</strike> dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
               + "Lorem <span style=\"color: rgb(230, 0, 0);\">bvjkshsagy</span>ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore"
@@ -23,10 +23,10 @@ const useJournalStore = create((set) => ({
     
       { 
         id: uid(),
-        title: "Journal 2",
-        lastModified: "2024-03-29, 09:27",
-        createdAt: "2024-03-29, 09:27",
-        desc: "<p>Desc of journal 2</p>",
+        title: "Green",
+        lastModified: "2024-03-21, 09:27",
+        createdAt: "2024-03-21, 09:27",
+        desc: "<p>Desc of Green</p>",
         category: "Travelling",
         mood: "Sad",
         fav: false,
@@ -35,15 +35,39 @@ const useJournalStore = create((set) => ({
     
       { 
         id: uid(),
-        title: "Journal 3",
-        lastModified: "2024-03-28, 09:27",
-        createdAt: "2024-03-28, 09:27",
-        desc: "<p>Desc of journal 3</p>",
+        title: "Blue",
+        lastModified: "2024-03-03, 09:27",
+        createdAt: "2024-03-03, 09:27",
+        desc: "<p>Desc of Blue</p>",
         category: "Travelling",
         mood: "Happy",
         fav: false,
         img: "https://st2.depositphotos.com/27201292/44377/i/450/depositphotos_443773160-stock-photo-vertical-shot-car-side-mirror.jpg"
       },
+
+      { 
+        id: uid(),
+        title: "Avocado",
+        lastModified: "2024-03-12, 09:27",
+        createdAt: "2024-03-12, 09:27",
+        desc: "<p>Desc of Avocado</p>",
+        category: "Travelling",
+        mood: "Happy",
+        fav: false,
+        img: "https://st2.depositphotos.com/27201292/44377/i/450/depositphotos_443773160-stock-photo-vertical-shot-car-side-mirror.jpg"
+      },
+
+      { 
+        id: uid(),
+        title: "Mint",
+        lastModified: "2024-03-30, 09:27",
+        createdAt: "2024-03-30, 09:27",
+        desc: "<p>Desc of Mint</p>",
+        category: "Travelling",
+        mood: "Happy",
+        fav: false,
+        img: "https://st2.depositphotos.com/27201292/44377/i/450/depositphotos_443773160-stock-photo-vertical-shot-car-side-mirror.jpg"
+      }
 
   ],
 

@@ -9,7 +9,7 @@ import ReactQuill from 'react-quill';
 import parse from 'html-react-parser';
 
 
-export const JournalCards = ({journal, handleStarClicked, handleEditClick, deleteJournal}) => {
+export const JournalCards = ({journal, handleStarClicked, handleEditClick, handleDeleteClicked}) => {
   return (
     <div>
         <Card >
@@ -27,7 +27,7 @@ export const JournalCards = ({journal, handleStarClicked, handleEditClick, delet
                           {!journal.fav && (<Star style={{fontSize: '1.5rem'}} onClick={() => handleStarClicked(journal)}></Star>)}
                           <Pen style={{fontSize: '1.5rem'}} onClick={() => {handleEditClick(journal);}}
                           ></Pen>
-                          <Trash style={{fontSize: '1.5rem'}} onClick={() => {deleteJournal(journal.id);}}></Trash>
+                          <Trash style={{fontSize: '1.5rem'}} onClick={() => {handleDeleteClicked(journal);}}></Trash>
                         </Stack>
                       </Col>
                     </Row>

@@ -71,7 +71,7 @@ const useJournalStore = create((set) => ({
 
   ],
 
-  addJournal: (journal) => set((state) => ({ journals: [...state.journals, journal] })),
+  addJournal: (journal) => set((state) => ({ journals: [journal, ...state.journals] })),
 
   updateJournal: (id, updatedJournal) =>
     set((state) => ({
